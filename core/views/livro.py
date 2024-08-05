@@ -4,7 +4,7 @@ from core.models import Categoria, Editora, Autor, Livro
 from core.serializers import CategoriaSerializer, EditoraSerializer, AutorSerializer, LivroSerializer, LivroDetailSerializer, LivroListSerializer
 
 class LivroViewSet(ModelViewSet):
-    queryset = Livro.objects.all()
+    queryset = Livro.objects.order_by('titulo')
     serializer_class = LivroSerializer
 
     def get_serializer_class(self):
