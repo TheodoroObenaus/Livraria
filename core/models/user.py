@@ -9,6 +9,7 @@ from django.contrib.auth.models import (
 )
 from django.db import models
 
+from uploader.models import Image
 
 class UserManager(BaseUserManager):
     """Manager for users."""
@@ -44,6 +45,15 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     objects = UserManager()
 
+    foto = models.ForeignKey(
+        Image,
+        related_name="+",
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        default=None,
+    )
+    
     USERNAME_FIELD = "email"
 
     class Meta:
